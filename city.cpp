@@ -4,49 +4,44 @@
 
 #include "city.hpp"
 
-void city::set_coordinates(unsigned int x, unsigned int y) {
-    if (x > 1000) {
+void city::set_x(double x) {
+    if (x > MAP_BOUNDARY) {
         throw std::invalid_argument(
-                "x (latitude) must be in the range [0, 1000]."
+                "x (latitude) must be in the range [0, MAP_BOUNDARY]."
         );
     }
 
-    if (y > 1000) {
+    this->x = x;
+}
+
+void city::set_y(double y) {
+    if (y > MAP_BOUNDARY) {
         throw std::invalid_argument(
-                "y (longitude) must be in the range [0, 1000]."
+                "y (longitude) must be in the range [0, MAP_BOUNDARY]."
         );
     }
 
-    coordinates.first = x;
-    coordinates.second = y;
+    this->y = y;
 }
 
-void city::set_latitude(unsigned int x) {
-    if (x > 1000) {
+void city::set_name(std::string name) {
+    if (name.empty()) {
         throw std::invalid_argument(
-                "x (latitude) must be in the range [0, 1000]."
+                "name should not be empty."
         );
     }
-    coordinates.first = x;
+
+    this->name = name;
 }
 
-void city::set_longitude(unsigned int y) {
-    if (y > 1000) {
-        throw std::invalid_argument(
-                "y (longitude) must be in the range [0, 1000]."
-        );
-    }
-    coordinates.second = y;
+double city::get_x() {
+    return x;
 }
 
-std::pair<unsigned int, unsigned int> city::get_coordinates() {
-    return coordinates;
+double city::get_y() {
+    return y;
 }
 
-unsigned int city::get_latitude() {
-    return coordinates.first;
-}
-
-unsigned int city::get_longitude() {
-    return coordinates.second;
+std::string city::get_name() {
+    return name;
 }

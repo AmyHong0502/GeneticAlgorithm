@@ -9,38 +9,69 @@
 #include <utility>
 #include <stdexcept>
 
+#define MAP_BOUNDARY 1000
+
 class city {
+
 private:
+
+    /**
+     * Name of this city.
+     */
     std::string name;
-    std::pair<unsigned int, unsigned int> coordinates;
+
+    /**
+     * Latitude of this city. Must be between [0, MAP_BOUNDARY] inclusive.
+     */
+    double x;
+
+    /**
+     * Longitude of this city. Must be between [0, MAP_BOUNDARY] inclusive.
+     */
+    double y;
+
 public:
 
-    // TODO ASK JEFF to see if it's ok to have a `pair` instead of int x / int y
+    /**
+     *
+     * @param name This city's name.
+     */
+    void set_name(std::string name);
 
     /**
      *
-     * @param x latitude of this city. Range: [0, 1000]
-     * @param y longitude of this city. Range: [0, 1000]
+     * @param x Latitude of this city.
+     *          Must be between [0, MAP_BOUNDARY] inclusive.
      */
-    void set_coordinates(unsigned int x, unsigned int y);
+    void set_x(double x);
 
     /**
      *
-     * @param x latitude of this city. Range: [0, 1000]
+     * @param y Longitude of this city.
+     *          Must be between [0, MAP_BOUNDARY] inclusive.
      */
-    void set_latitude(unsigned int x);
+    void set_y(double y);
 
     /**
+     * Returns this city's name.
      *
-     * @param y longitude of this city. Range: [0, 1000]
+     * @return this city's name.
      */
-    void set_longitude(unsigned int y);
+    std::string get_name();
 
-    std::pair<unsigned int, unsigned int> get_coordinates();
+    /**
+     * Returns this city's latitude.
+     *
+     * @return this city's latitude.
+     */
+    double get_x();
 
-    unsigned int get_latitude();
-
-    unsigned int get_longitude();
+    /**
+     * Returns this city's longitude.
+     *
+     * @return this city's longitude.
+     */
+    double get_y();
 };
 
 #endif //GENETICALGORITHM_CITY_HPP
