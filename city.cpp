@@ -45,3 +45,10 @@ double city::get_y() const {
 std::string city::get_name() const {
     return name;
 }
+
+double city::get_distance_between_cities(const city& c) const {
+    double delta_x = c.get_x() - this->x;
+    double delta_y = c.get_y() - this->y;
+
+    return sqrt(delta_x * delta_x + delta_y * delta_y);
+}

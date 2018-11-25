@@ -8,6 +8,7 @@
 #include <string>
 #include <utility>
 #include <stdexcept>
+#include <math.h>
 
 #define MAP_BOUNDARY 1000
 
@@ -72,6 +73,14 @@ public:
      * @return this city's longitude.
      */
     double get_y() const;
+
+    /**
+     * Returns distance between the given city.
+     *
+     * @param c city to measure distance.
+     * @return distance between this city and the given city.
+     */
+    double get_distance_between_cities(const city& c) const;
 };
 
 #endif //GENETICALGORITHM_CITY_HPP
