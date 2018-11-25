@@ -57,21 +57,21 @@ public:
      *
      * @return this city's name.
      */
-    std::string get_name();
+    std::string get_name() const;
 
     /**
      * Returns this city's latitude.
      *
      * @return this city's latitude.
      */
-    double get_x();
+    double get_x() const;
 
     /**
      * Returns this city's longitude.
      *
      * @return this city's longitude.
      */
-    double get_y();
+    double get_y() const;
 };
 
 #endif //GENETICALGORITHM_CITY_HPP

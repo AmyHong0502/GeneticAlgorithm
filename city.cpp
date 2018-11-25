@@ -34,14 +34,14 @@ void city::set_name(std::string name) {
     this->name = name;
 }
 
-double city::get_x() {
+double city::get_x() const {
     return x;
 }
 
-double city::get_y() {
+double city::get_y() const {
     return y;
 }
 
-std::string city::get_name() {
+std::string city::get_name() const {
     return name;
 }
