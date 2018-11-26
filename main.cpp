@@ -3,6 +3,6 @@
 
 int main() {
     algorithm algo;
-    algo.start();
+    algo.run();
     return 0;
 }

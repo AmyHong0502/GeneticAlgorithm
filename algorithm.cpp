@@ -5,18 +5,11 @@
 #include <iostream>
 #include "algorithm.hpp"
 
-void algorithm::start() {
+void algorithm::run() {
 
     init();
     report();
-
-    base_case = find_fittest_tour();
-
-    std::sort(population.begin(), population.end());
-
-    select_elite_tour();
-
-    std::cout << "\n\n\n";
+    select();
 
     report();
 }
@@ -33,27 +26,13 @@ void algorithm::init() {
     }
 }
 
-tour algorithm::find_fittest_tour() {
-    double fitness = 0;
-    tour fittest_tour;
-
-    for (const auto &i : population) {
-        double f = i.determine_fitness();
-
-        if (f > fitness) {
-            fittest_tour = i;
-            fitness = f;
-        }
-    }
-
-    return fittest_tour;
-}
-
-void algorithm::select_elite_tour() {
+void algorithm::select() {
+    std::sort(population.begin(), population.end());
 }
 
 void algorithm::report() {
     for (const auto &i : population) {
         std::cout << i;
     }
+    std::cout << std::endl;
 }

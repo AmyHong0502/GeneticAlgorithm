@@ -30,7 +30,6 @@ public:
 
     ~algorithm() = default;
 
-
     void select();
 
     void crossover();
@@ -41,17 +40,11 @@ public:
 
     void report();
 
-
-
-    bool contains_city(tour t, city c);
-
-    void start();
+    void run();
 
     void init();
 
-    tour find_fittest_tour();
-
-    void select_elite_tour();
+    bool contains_city(tour t, city c);
 };
 
 #endif //GENETICALGORITHM_ALGORITHM_HPP
