@@ -17,16 +17,15 @@ tour::tour(std::vector<city *> cities) {
 }
 
 double tour::determine_fitness() const {
+    return 1 / get_tour_distance();
+}
+
+double tour::get_tour_distance() const {
     double d = 0;
     for (unsigned long i = 0; i < size() - 1; i++) {
         d += at(i)->get_distance_between_cities(* at(i + 1));
     }
-    return 1 / d;
-}
-
-double tour::get_tour_distance() const {
-    city c = *(this->at(0));
-    return 0;
+    return d;
 }
 
 bool tour::contains_city(city *c) const {
@@ -43,11 +42,9 @@ void tour::add_city(city *c) {
 
 std::ostream &operator<<(std::ostream &os, const tour &t) {
     const int width = 4;
-    for (unsigned long i = 0; i < t.size(); i++) {
-        os << std::setw(width) << t.at(i)->get_name();
-        os << " ";
+    for (const auto &i : t) {
+        os << std::setw(width) << i->get_name() << " ";
     }
-    os << std::setw(width * 2) << t.determine_fitness();
-    os << std::endl;
+    os << t.determine_fitness() << std::endl;
     return os;
 }
