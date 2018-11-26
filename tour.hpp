@@ -77,9 +77,23 @@ public:
      */
     bool contains_city(city *c) const;
 
+    /**
+     * Beautifies output text.
+     *
+     * @param os ostream.
+     * @param t  tour to beautify output text.
+     * @return   beautified output text.
+     */
     friend std::ostream &operator<<(std::ostream &os, const tour &t);
 
-    friend bool operator<(const tour& l, const tour& r);
+    /**
+     * Returns true if l's total tour distance is shorter than r's distance.
+     *
+     * @param l tour to compare.
+     * @param r tour to compare.
+     * @return true if l's total tour distance is shorter than r's distance.
+     */
+    friend bool operator<(const tour &l, const tour &r);
 };
 
 #endif //GENETICALGORITHM_TOUR_HPP

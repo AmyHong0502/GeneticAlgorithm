@@ -2,22 +2,28 @@
 // Created by Amy Hong on 2018-11-24.
 //
 
-#include <iostream>
 #include "algorithm.hpp"
 
 void algorithm::run() {
     init();
     sort();
-    report();
 
-    for (int i = 0; i < ITERATIONS; i++) {
+    int iteration_counter = 0;
+    double improvement = 1;
+    tour prev;
+    while (iteration_counter < ITERATIONS || improvement < IMPROVEMENT_FACTOR) {
+        ++iteration_counter;
+        prev = population.front();
+
         crossover();
         sort();
-        report();
 
         mutate();
         sort();
-        report();
+
+        improvement = evaluate(prev);
+
+        report(improvement);
     }
 }
 
@@ -68,12 +74,16 @@ void algorithm::sort() {
     std::sort(population.begin(), population.end());
 }
 
-void algorithm::report() {
+void algorithm::report(double improvement) {
     double best = population.front().determine_fitness();
     double worst = population.at(population.size() - 1).determine_fitness();
     std::cout
+            << std::setw(12) << "BEST"
             << std::setw(12) << best * 100000
-            << std::setw(12) << worst * 100000 << std::endl;
+            << std::setw(12) << "WORST"
+            << std::setw(12) << worst * 100000
+            << std::setw(12) << "IMPROVEMENT"
+            << std::setw(12) << improvement << std::endl;
 }
 
 void algorithm::print() {
@@ -84,9 +94,16 @@ void algorithm::print() {
 }
 
 void algorithm::mutate() {
-    for (int i = NUMBER_OF_ELITES; i < population.size(); i++) {
+    for (unsigned long i = NUMBER_OF_ELITES; i < population.size(); i++) {
         if (rand.generate_random_int(0, MUTATION_RATE) == MUTATION_RATE) {
             population.at(i).mutate();
         }
     }
+}
+
+double algorithm::evaluate(tour prev) {
+    double before = prev.determine_fitness();
+    double after = population.front().determine_fitness();
+
+    return (after - before) * 100000;
 }

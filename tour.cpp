@@ -42,19 +42,6 @@ void tour::add_city(city *c) {
     push_back(c);
 }
 
-std::ostream &operator<<(std::ostream &os, const tour &t) {
-    const int width = 4;
-    for (const auto &i : t) {
-        os << std::setw(width) << i->get_name() << " ";
-    }
-    os << t.determine_fitness() << std::endl;
-    return os;
-}
-
-bool operator<(const tour &l, const tour &r) {
-    return l.get_tour_distance() < r.get_tour_distance();
-}
-
 tour tour::crossover(tour parent) {
     std::random_device rd;
     std::mt19937 gen(rd());
@@ -94,4 +81,17 @@ void tour::mutate() {
             at(i + 1) = temp;
         }
     }
+}
+
+std::ostream &operator<<(std::ostream &os, const tour &t) {
+    const int width = 4;
+    for (const auto &i : t) {
+        os << std::setw(width) << i->get_name() << " ";
+    }
+    os << t.determine_fitness() << std::endl;
+    return os;
+}
+
+bool operator<(const tour &l, const tour &r) {
+    return l.get_tour_distance() < r.get_tour_distance();
 }

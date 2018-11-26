@@ -5,50 +5,67 @@
 #ifndef GENETICALGORITHM_ALGORITHM_HPP
 #define GENETICALGORITHM_ALGORITHM_HPP
 
+#include <iostream>
 #include "randomizer.hpp"
 
 #define POPULATION_SIZE 32
-#define SHUFFLES 64
 #define ITERATIONS 1000
 #define PARENT_POOL_SIZE 5
 #define NUMBER_OF_ELITES 1
 #define NUMBER_OF_PARENTS 2
 
-#define IMPROVEMENT_FACTOR 0
+#define IMPROVEMENT_FACTOR 0.1
 
 class algorithm {
 private:
+
+    /** Randomizer. */
     randomizer rand;
 
+    /** List of tours. */
     std::vector<tour> population;
 
-    tour base_case;
-
 public:
-    algorithm() = default;
 
-    ~algorithm() = default;
-
-    void select();
-
-    void crossover();
-
-    void mutate();
-
-    void evaluate();
-
-    void report();
-
+    /**
+     * Runs this algorithm.
+     */
     void run();
 
+    /**
+     * Initializes population.
+     */
     void init();
 
+    /**
+     * Makes children tours by crossover.
+     */
+    void crossover();
+
+    /**
+     * Mutates some tours in population.
+     */
+    void mutate();
+
+    double evaluate(tour prev);
+
+    void report(double improvement);
+
+    /**
+     * Sorts population.
+     */
     void sort();
 
+    /**
+     * Prints the entire list of tours in population.
+     */
     void print();
 
-    std::vector<tour> sub_tour(int first, int last);
-
+    /**
+     * Returns a tour to use as a parent.
+     *
+     * @return tour to use as a parent tour.
+     */
     tour choose_parent();
 };
 

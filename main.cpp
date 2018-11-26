@@ -1,4 +1,3 @@
-#include <iostream>
 #include "algorithm.hpp"
 
 int main() {
