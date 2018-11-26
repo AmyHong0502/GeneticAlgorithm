@@ -16,7 +16,6 @@
  * A list of cities to travel.
  */
 class tour : std::vector<city *> {
-
 public:
 
     /**

@@ -12,8 +12,8 @@
 #define ITERATIONS 1000
 #define PARENT_POOL_SIZE 5
 #define MUTATION_RATE 15
-#define NUMBER_OF ELITES 1
-#define NUMBER_OF_PARENTS 1 // TODO Change this number
+#define NUMBER_OF_ELITES 1
+#define NUMBER_OF_PARENTS 2
 
 #define IMPROVEMENT_FACTOR 0
 
@@ -44,7 +44,11 @@ public:
 
     void init();
 
-    bool contains_city(tour t, city c);
+    void sort();
+
+    std::vector<tour> sub_tour(int first, int last);
+
+    tour choose_parent();
 };
 
 #endif //GENETICALGORITHM_ALGORITHM_HPP
