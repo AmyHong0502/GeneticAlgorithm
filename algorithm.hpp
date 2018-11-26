@@ -30,9 +30,24 @@ public:
 
     ~algorithm() = default;
 
+
+    void select();
+
+    void crossover();
+
+    void mutate();
+
+    void evaluate();
+
+    void report();
+
+
+
     bool contains_city(tour t, city c);
 
     void start();
+
+    void init();
 
     tour find_fittest_tour();
 
