@@ -10,9 +10,12 @@ void algorithm::run() {
     sort();
     report();
 
-    crossover();
-    sort();
-    report();
+    for (int i = 0; i < ITERATIONS; i++) {
+        crossover();
+        sort();
+        report();
+    }
+
 }
 
 void algorithm::init() {
@@ -50,7 +53,7 @@ tour algorithm::choose_parent() {
         parent.push_back(population.at(
                 static_cast<unsigned long>(
                         rand.generate_random_int(NUMBER_OF_ELITES,
-                                                 POPULATION_SIZE)
+                                                 POPULATION_SIZE - 1)
                 )));
     }
 
@@ -65,7 +68,10 @@ void algorithm::sort() {
 void algorithm::report() {
     double best = population.front().determine_fitness();
     double worst = population.at(population.size() - 1).determine_fitness();
-    std::cout << (best - worst) << " :: " << best << " - " << worst << "\n";
+    std::cout
+            << std::setw(9) << best * 100000
+            << std::setw(9) << " "
+            << std::setw(9) << worst * 100000 << std::endl;
 }
 
 void algorithm::print() {

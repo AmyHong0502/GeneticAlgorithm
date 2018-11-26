@@ -51,10 +51,6 @@ std::ostream &operator<<(std::ostream &os, const tour &t) {
     return os;
 }
 
-//void tour::sort() {
-//    std::sort(begin(), end());
-//}
-
 bool operator<(const tour &l, const tour &r) {
     return l.get_tour_distance() < r.get_tour_distance();
 }
@@ -62,7 +58,7 @@ bool operator<(const tour &l, const tour &r) {
 tour tour::crossover(tour parent) {
     std::random_device rd;
     std::mt19937 gen(rd());
-    std::uniform_int_distribution<> dis(0, CITIES_IN_TOUR);
+    std::uniform_int_distribution<> dis(0, CITIES_IN_TOUR - 1);
 
     int pos1 = dis(gen);
     int pos2 = dis(gen);
