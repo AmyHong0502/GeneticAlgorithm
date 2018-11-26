@@ -5,54 +5,35 @@
 #ifndef GENETICALGORITHM_TOUR_HPP
 #define GENETICALGORITHM_TOUR_HPP
 
-#define CITIES_IN_TOUR 32 // it would be nice if the user can choose
+#define CITIES_IN_TOUR 32
 
+#include <iomanip>
+#include <numeric>
+#include <vector>
 #include "city.hpp"
 
 /**
  * A list of cities to travel.
  */
-class tour {
-
-private:
-
-    /**
-     * A list of all cities.
-     */
-    city *cities;
-
-    /**
-     * Represents the quality of the tour.
-     * Fitness evaluates the distance the travelling salesman would need to
-     * travel to visit the cities in the order they appear in the tour.
-     */
-    double fitness;
+class tour : std::vector<city *> {
 
 public:
 
     /**
+     *
+     */
+    tour() = default;
+
+    /**
      * Constructor of this tour.
      */
-    tour();
+    explicit tour(std::vector<city *> cities);
 
     /**
-     * Destructor of this tour.
-     */
-    ~tour();
-
-    /**
-     * Sets cities for this tour.
      *
-     * @param cities cities to travel.
+     * @param c
      */
-    void set_cities(city *cities);
-
-    /**
-     * Returns cities in this tour.
-     *
-     * @return cities in this tour.
-     */
-    city *get_cities();
+    void add_city(city *c);
 
     /**
      * Shuffles the cities in this tour.
@@ -78,7 +59,7 @@ public:
      *
      * @return
      */
-    double determine_fitness();
+    double determine_fitness() const;
 
     /**
      * Mutates this tour.
@@ -98,7 +79,9 @@ public:
      * @param c city to check.
      * @return true if this tour contains the specified city.
      */
-    bool contains_city(city c);
+    bool contains_city(city *c) const;
+
+    friend std::ostream &operator<<(std::ostream &os, const tour &t);
 };
 
 #endif //GENETICALGORITHM_TOUR_HPP
