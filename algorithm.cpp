@@ -14,8 +14,11 @@ void algorithm::run() {
         crossover();
         sort();
         report();
-    }
 
+        mutate();
+        sort();
+        report();
+    }
 }
 
 void algorithm::init() {
@@ -69,9 +72,8 @@ void algorithm::report() {
     double best = population.front().determine_fitness();
     double worst = population.at(population.size() - 1).determine_fitness();
     std::cout
-            << std::setw(9) << best * 100000
-            << std::setw(9) << " "
-            << std::setw(9) << worst * 100000 << std::endl;
+            << std::setw(12) << best * 100000
+            << std::setw(12) << worst * 100000 << std::endl;
 }
 
 void algorithm::print() {
@@ -79,4 +81,12 @@ void algorithm::print() {
         std::cout << i;
     }
     std::cout << std::endl;
+}
+
+void algorithm::mutate() {
+    for (int i = NUMBER_OF_ELITES; i < population.size(); i++) {
+        if (rand.generate_random_int(0, MUTATION_RATE) == MUTATION_RATE) {
+            population.at(i).mutate();
+        }
+    }
 }

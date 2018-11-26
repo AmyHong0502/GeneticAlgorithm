@@ -80,3 +80,18 @@ tour tour::crossover(tour parent) {
 
     return new_tour;
 }
+
+void tour::mutate() {
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> dis(0, CITIES_IN_TOUR - 1);
+
+    for (unsigned long i = 0; i < size() - 1; i++) {
+        int mutation_value = dis(gen);
+        if (mutation_value < MUTATION_RATE) {
+            city * temp = at(i);
+            at(i) = at(i + 1);
+            at(i + 1) = temp;
+        }
+    }
+}

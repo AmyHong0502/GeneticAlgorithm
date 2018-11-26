@@ -6,6 +6,7 @@
 #define GENETICALGORITHM_TOUR_HPP
 
 #define CITIES_IN_TOUR 32
+#define MUTATION_RATE 15
 
 #include <iomanip>
 #include <numeric>
@@ -41,13 +42,6 @@ public:
      * Shuffles the cities in this tour.
      */
     void shuffle_cities();
-
-    /**
-     * Returns as-the-crow-flies distance between cities in this tour.
-     *
-     * @return distance between cities in this tour.
-     */
-    double get_distance_between_cities(city a, city b) const;
 
     /**
      * Reports the distance between the cities as they are listed in this tour.
