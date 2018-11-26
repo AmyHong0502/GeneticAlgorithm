@@ -85,6 +85,8 @@ public:
     bool contains_city(city *c) const;
 
     friend std::ostream &operator<<(std::ostream &os, const tour &t);
+
+    friend bool operator<(const tour& l, const tour& r);
 };
 
 #endif //GENETICALGORITHM_TOUR_HPP

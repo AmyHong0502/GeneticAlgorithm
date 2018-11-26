@@ -7,21 +7,23 @@
 
 #include "randomizer.hpp"
 
-#define POPULATION_SIZE 32  // it would be nice if the user can choose
+#define POPULATION_SIZE 32
 #define SHUFFLES 64
 #define ITERATIONS 1000
 #define PARENT_POOL_SIZE 5
-#define MUTATION_RATE 15    // it would be nice if the user can choose
-#define NUMBER_OF ELITES 1  // How changing this would modify the algorithm's
-                            // effectiveness?
-                            // Should start at 1.
+#define MUTATION_RATE 15
+#define NUMBER_OF ELITES 1
 #define NUMBER_OF_PARENTS 1 // TODO Change this number
+
+#define IMPROVEMENT_FACTOR 0
 
 class algorithm {
 private:
     randomizer rand;
 
     std::vector<tour> population;
+
+    tour base_case;
 
 public:
     algorithm() = default;
@@ -31,6 +33,10 @@ public:
     bool contains_city(tour t, city c);
 
     void start();
+
+    tour find_fittest_tour();
+
+    void select_elite_tour();
 };
 
 #endif //GENETICALGORITHM_ALGORITHM_HPP

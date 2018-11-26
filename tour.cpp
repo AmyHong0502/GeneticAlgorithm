@@ -21,9 +21,9 @@ double tour::determine_fitness() const {
 }
 
 double tour::get_tour_distance() const {
-    double d = 0;
+    double d = at(size() - 1)->get_distance_between_cities(*at(0));
     for (unsigned long i = 0; i < size() - 1; i++) {
-        d += at(i)->get_distance_between_cities(* at(i + 1));
+        d += at(i)->get_distance_between_cities(*at(i + 1));
     }
     return d;
 }
@@ -47,4 +47,12 @@ std::ostream &operator<<(std::ostream &os, const tour &t) {
     }
     os << t.determine_fitness() << std::endl;
     return os;
+}
+
+//void tour::sort() {
+//    std::sort(begin(), end());
+//}
+
+bool operator<(const tour &l, const tour &r) {
+    return l.get_tour_distance() < r.get_tour_distance();
 }
