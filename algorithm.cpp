@@ -7,8 +7,6 @@
 
 void algorithm::run() {
     init();
-    report();
-//    select();
     sort();
     report();
 
@@ -27,13 +25,6 @@ void algorithm::init() {
 
         population.push_back(temp);
     }
-}
-
-void algorithm::report() {
-    for (const auto &i : population) {
-        std::cout << i;
-    }
-    std::cout << std::endl;
 }
 
 void algorithm::crossover() {
@@ -69,4 +60,17 @@ tour algorithm::choose_parent() {
 
 void algorithm::sort() {
     std::sort(population.begin(), population.end());
+}
+
+void algorithm::report() {
+    double best = population.front().determine_fitness();
+    double worst = population.at(population.size() - 1).determine_fitness();
+    std::cout << (best - worst) << " :: " << best << " - " << worst << "\n";
+}
+
+void algorithm::print() {
+    for (const auto &i : population) {
+        std::cout << i;
+    }
+    std::cout << std::endl;
 }

@@ -46,6 +46,8 @@ public:
 
     void sort();
 
+    void print();
+
     std::vector<tour> sub_tour(int first, int last);
 
     tour choose_parent();

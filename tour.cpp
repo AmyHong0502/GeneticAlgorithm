@@ -18,7 +18,8 @@ tour::tour(std::vector<city *> cities) {
 }
 
 double tour::determine_fitness() const {
-    return 1 / get_tour_distance();
+    double td = get_tour_distance();
+    return 1 / td;
 }
 
 double tour::get_tour_distance() const {
@@ -78,8 +79,6 @@ tour tour::crossover(tour parent) {
     for (const auto &i : parent) {
         if (!new_tour.contains_city(i)) {
             new_tour.add_city(i);
-        } else {
-            std::cout << " ";
         }
     }
 
