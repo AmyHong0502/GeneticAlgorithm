@@ -21,7 +21,7 @@ class algorithm {
 private:
     randomizer rand;
 
-    std::vector<tour> tours;
+    std::vector<tour> population;
 
 public:
     algorithm() = default;

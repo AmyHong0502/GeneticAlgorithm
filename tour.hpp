@@ -20,18 +20,21 @@ class tour : std::vector<city *> {
 public:
 
     /**
-     *
+     * Constructor of this tour.
      */
     tour() = default;
 
     /**
      * Constructor of this tour.
+     *
+     * @param cities cities to travel.
      */
     explicit tour(std::vector<city *> cities);
 
     /**
+     * Adds a city at the end of this tour.
      *
-     * @param c
+     * @param c city to travel.
      */
     void add_city(city *c);
 

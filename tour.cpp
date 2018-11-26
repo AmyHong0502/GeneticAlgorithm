@@ -1,3 +1,5 @@
+#include <random>
+
 //
 // Created by Amy Hong on 2018-11-11.
 //
@@ -32,9 +34,7 @@ bool tour::contains_city(city *c) const {
 }
 
 void tour::shuffle_cities() {
-    vector<city *> new_tour;
-
-    // deep copy --> shuffle_cities()
+    std::shuffle(begin(), end(), std::mt19937(std::random_device()()));
 }
 
 void tour::add_city(city *c) {
@@ -42,11 +42,12 @@ void tour::add_city(city *c) {
 }
 
 std::ostream &operator<<(std::ostream &os, const tour &t) {
-    const int width = 7;
+    const int width = 4;
     for (unsigned long i = 0; i < t.size(); i++) {
         os << std::setw(width) << t.at(i)->get_name();
-        os << std::endl;
+        os << " ";
     }
     os << std::setw(width * 2) << t.determine_fitness();
+    os << std::endl;
     return os;
 }
