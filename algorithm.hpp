@@ -47,8 +47,19 @@ public:
      */
     void mutate();
 
+    /**
+     * Evaluates progression.
+     *
+     * @param prev previous tour to compare.
+     * @return progression rate.
+     */
     double evaluate(tour prev);
 
+    /**
+     * Reports progress by std::cout.
+     *
+     * @param improvement improvement rate to print.
+     */
     void report(double improvement);
 
     /**
